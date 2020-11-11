@@ -2,7 +2,6 @@ package com.example.task5.controllers;
 
 import com.example.task5.dao.AccountDAO;
 import com.example.task5.models.Account;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/accounts")
 public class AccountsController {
 
-    AccountDAO accountDAO;
+    private final AccountDAO accountDAO;
 
-    @Autowired
     public AccountsController(AccountDAO accountDAO) {
         this.accountDAO = accountDAO;
     }
@@ -50,7 +48,7 @@ public class AccountsController {
     @PatchMapping("/{username}")
     public String updateAccount(@ModelAttribute("account") Account account) {
         accountDAO.update(account);
-        return "redirect:/accounts/" + account.getUsername();
+        return String.format("redirect:/accounts/%s", account.getUsername());
     }
 
     @DeleteMapping("/{username}")

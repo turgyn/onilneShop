@@ -8,10 +8,20 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
-    <form th:method="POST" th:action="@{/accounts}" th:object="${account}">
-        <input type="text" th:field="*{username}" placeholder="username">
-        <input type="password" th:field="*{password}" placeholder="password">
-        <input type="submit" value="Create">
-    </form>
+    <div class="row main-content">
+        <div class="text-center me-form">
+
+            <h1>Register</h1>
+
+            <form th:method="POST" th:action="@{/accounts}" th:object="${account}">
+                <input type="text" th:field="*{username}" class="form-control" placeholder="Username" required>
+                <input type="password" th:field="*{password}" class="form-control" placeholder="Password" required>
+                <input type="password" class="form-control" placeholder="Confirm password" required>
+                <input type="submit" class="btn btn-primary btn-lg btn-block mt-3" value="Create">
+            </form>
+
+            <p class="mt-3"> <span>Already have an account? </span><a href="./login.html">Log in</a></p>
+        </div>
+    </div>
 </body>
 </html>

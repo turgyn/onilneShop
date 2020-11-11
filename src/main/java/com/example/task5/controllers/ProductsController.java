@@ -2,7 +2,6 @@ package com.example.task5.controllers;
 
 import com.example.task5.dao.ProductDAO;
 import com.example.task5.models.Product;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
-    ProductDAO productDAO;
 
-    @Autowired
+    private final ProductDAO productDAO;
+
     public ProductsController(ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
@@ -49,7 +48,7 @@ public class ProductsController {
     @PatchMapping("/{id}")
     public String updateProduct(@ModelAttribute Product product) {
         productDAO.update(product);
-        return "redirect:/products/" + product.getId();
+        return String.format("redirect:/products/%s",product.getId());
     }
 
     @DeleteMapping("/{id}")
