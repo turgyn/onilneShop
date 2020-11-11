@@ -8,11 +8,12 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
-    <h1>Accounts List</h1>
+    <h1>Product List</h1>
     <ul>
-        <li th:each="account : ${accounts}">
-            <a th:href="@{/accounts/{id}(id=${account.getUsername()})}" th:text="${account.getUsername()}"></a>
+        <li th:each="product : ${products}">
+            <a th:href="@{/products/{id}(id=${product.getId()})}" th:text="${product.getName()}"></a>
         </li>
     </ul>
+    <a href="products/new">New Product</a>
 </body>
 </html>

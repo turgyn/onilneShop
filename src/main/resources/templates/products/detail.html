@@ -9,13 +9,14 @@
 <body>
     <header th:insert="fragments :: header"></header>
     <h1>Detail</h1>
-    <p th:text="${account.getUsername()}"></p>
-    <p th:text="${account.getPassword()}"></p>
-    <p th:text="${account.getBalance()}"></p>
-    <a th:href="@{/accounts/{username}/edit(username=${account.getUsername()})}">Edit</a>
-    <form th:method="delete" th:action="@{/accounts/{username}(username=${account.getUsername()})}">
+    <p th:text="'ID: ' + ${product.getId()}"></p>
+    <p th:text="'name: ' + ${product.getName()}"></p>
+    <p th:text="'price: ' + ${product.getPrice()}"></p>
+    <p th:text="'amount: ' + ${product.getQuantity()}"></p>
+    <a th:href="@{/products/{id}/edit(id=${product.getId()})}">Edit</a>
+    <form th:method="delete" th:action="@{/products/{id}(id=${product.getId()})}">
         <input type="submit" value="Delete">
     </form>
-    <a th:href="@{/accounts/}">Accounts List</a>
+    <a th:href="@{/products/}">products List</a>
 </body>
 </html>

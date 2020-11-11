@@ -8,14 +8,14 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
-    <h1>Detail</h1>
-    <p th:text="${account.getUsername()}"></p>
-    <p th:text="${account.getPassword()}"></p>
-    <p th:text="${account.getBalance()}"></p>
-    <a th:href="@{/accounts/{username}/edit(username=${account.getUsername()})}">Edit</a>
-    <form th:method="delete" th:action="@{/accounts/{username}(username=${account.getUsername()})}">
-        <input type="submit" value="Delete">
+    <form th:method="PATCH" th:action="@{/products/{id}(id=${product.getId()})}" th:object="${product}">
+        <label for="name">Name: </label>
+        <input type="text" th:field="*{name}" id="name">
+        <label for="quantity">Amount: </label>
+        <input type="number" th:field="*{quantity}" id="quantity">
+        <label for="price">Price: </label>
+        <input type="number" th:field="*{price}" id="price">
+        <input type="submit" value="Update">
     </form>
-    <a th:href="@{/accounts/}">Accounts List</a>
 </body>
 </html>

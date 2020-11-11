@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,11 +8,6 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
-    <h1>Accounts List</h1>
-    <ul>
-        <li th:each="account : ${accounts}">
-            <a th:href="@{/accounts/{id}(id=${account.getUsername()})}" th:text="${account.getUsername()}"></a>
-        </li>
-    </ul>
+    <div th:insert="fragments :: menu"></div>
 </body>
 </html>

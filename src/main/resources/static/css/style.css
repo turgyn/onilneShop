@@ -1,0 +1,26 @@
+body {
+    background-color: #eeeeee
+}
+
+header {
+    background-color: lightseagreen;
+    height: 60px;
+    padding: 10px 50px;
+}
+
+.me-form {
+    margin: 200px auto auto;
+    width: 300px;
+}
+
+.main_content {
+    background-color: beige;
+}
+
+.my-form {
+    padding: 50px;
+}
+
+.side-info {
+    padding: 50px;
+}

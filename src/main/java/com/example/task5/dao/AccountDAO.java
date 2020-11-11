@@ -11,37 +11,47 @@ public class AccountDAO {
     private List<Account> accounts = new ArrayList<>();
 
     {
-        accounts.add(new Account(1, "darustur", "darustur", 9889));
-        accounts.add(new Account(2, "meagain", "dar", 2));
-        accounts.add(new Account(3, "asdf", "darustu", 1));
-        accounts.add(new Account(4, "qwer", "darustu", 0));
+        accounts.add(new Account("darustur", "darustur", 9889));
+        accounts.add(new Account("meagain", "dar", 2));
+        accounts.add(new Account("asdf", "darustu", 1));
+        accounts.add(new Account("qwer", "darustu", 0));
     }
 
     public List<Account> selectAll() {
         return accounts;
     }
 
-    public Account selectById(int id) {
+    public Account selectByUsername(String username) {
         for (Account ac: accounts) {
-            if (ac.getId() == id) {
+            if (ac.getUsername().equals(username)) {
                 return ac;
             }
         }
         return null;
     }
 
-    public Account insert(Account account) {
+    public Account save(Account account) {
         accounts.add(account);
         return account;
     }
 
     public Account update(Account account) {
         for (Account ac: accounts) {
-            if (ac.getId() == account.getId()) {
-                ac = account;
+            if (ac.getUsername().equals(account.getUsername())) {
+                ac.setBalance(account.getBalance());
+                ac.setPassword(account.getPassword());
                 return ac;
             }
         }
         return null;
+    }
+
+    public void delete(String username) {
+        for (Account ac: accounts) {
+            if (ac.getUsername().equals(username)) {
+                accounts.remove(ac);
+                return;
+            }
+        }
     }
 }
