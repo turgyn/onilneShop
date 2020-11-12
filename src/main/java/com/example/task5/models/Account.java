@@ -1,6 +1,12 @@
 package com.example.task5.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="accounts")
 public class Account {
+
+    @Id
     private String username;
     private String password;
     private int balance;

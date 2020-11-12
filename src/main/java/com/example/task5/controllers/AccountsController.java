@@ -1,7 +1,7 @@
 package com.example.task5.controllers;
 
-import com.example.task5.dao.AccountDAO;
 import com.example.task5.models.Account;
+import com.example.task5.services.AccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/accounts")
 public class AccountsController {
 
-    private final AccountDAO accountDAO;
+    private final AccountService accountService;
 
-    public AccountsController(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
+    public AccountsController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @GetMapping
     public String getAccounts(Model model) {
-        model.addAttribute("accounts", accountDAO.selectAll());
+        model.addAttribute("accounts", accountService.getAll());
         return "accounts/all";
     }
 
     @GetMapping("/{username}")
     public String detailAccount(@PathVariable String username, Model model) {
-        model.addAttribute("account", accountDAO.selectByUsername(username));
+        model.addAttribute("account", accountService.getOne(username));
         return "accounts/detail";
     }
 
@@ -35,25 +35,25 @@ public class AccountsController {
 
     @PostMapping
     public String newAccount(@ModelAttribute Account account) {
-        accountDAO.save(account);
+        accountService.save(account);
         return "redirect:/accounts";
     }
 
     @GetMapping("{username}/edit")
     public String getEditForm(@PathVariable String username, Model model) {
-        model.addAttribute("account", accountDAO.selectByUsername(username));
+        model.addAttribute("account", accountService.getOne(username));
         return "accounts/edit";
     }
 
     @PatchMapping("/{username}")
     public String updateAccount(@ModelAttribute("account") Account account) {
-        accountDAO.update(account);
+        accountService.save(account);
         return String.format("redirect:/accounts/%s", account.getUsername());
     }
 
     @DeleteMapping("/{username}")
     public String deleteAccount(@PathVariable String username) {
-        accountDAO.delete(username);
+        accountService.deleteByUsername(username);
         return "redirect:/accounts";
     }
 }
