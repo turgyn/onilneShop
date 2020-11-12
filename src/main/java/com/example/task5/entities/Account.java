@@ -1,4 +1,4 @@
-package com.example.task5.models;
+package com.example.task5.entities;
 
 import javax.persistence.*;
 

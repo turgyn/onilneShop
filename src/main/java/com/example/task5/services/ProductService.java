@@ -1,7 +1,7 @@
 package com.example.task5.services;
 
-import com.example.task5.models.Product;
-import com.example.task5.repository.ProductRepository;
+import com.example.task5.entities.Product;
+import com.example.task5.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

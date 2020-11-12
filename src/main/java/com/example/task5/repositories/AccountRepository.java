@@ -1,10 +1,9 @@
-package com.example.task5.repository;
+package com.example.task5.repositories;
 
-import com.example.task5.models.Account;
+import com.example.task5.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
-    Account findByUsername(String username);
 }

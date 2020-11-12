@@ -1,7 +1,7 @@
 package com.example.task5.services;
 
-import com.example.task5.models.Account;
-import com.example.task5.repository.AccountRepository;
+import com.example.task5.entities.Account;
+import com.example.task5.repositories.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +24,6 @@ public class AccountService {
     }
 
     public void save(Account account) {
-        System.out.println("Service: " + account.getUsername());
         accountRepository.save(account);
     }
 

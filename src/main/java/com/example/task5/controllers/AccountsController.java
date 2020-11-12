@@ -1,6 +1,6 @@
 package com.example.task5.controllers;
 
-import com.example.task5.models.Account;
+import com.example.task5.entities.Account;
 import com.example.task5.services.AccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

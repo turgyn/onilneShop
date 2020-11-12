@@ -1,6 +1,6 @@
 package com.example.task5.controllers;
 
-import com.example.task5.models.Product;
+import com.example.task5.entities.Product;
 import com.example.task5.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
