@@ -18,7 +18,7 @@ public class AccountsController {
 
     @GetMapping
     public String getAccounts(Model model) {
-        model.addAttribute("accounts", accountService.getAll());
+        model.addAttribute("accounts", accountService.findAll());
         return "accounts/all";
     }
 

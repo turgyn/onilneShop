@@ -1,10 +1,10 @@
 package com.example.task5.repository;
 
-import com.example.task5.models.Account;
+import com.example.task5.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, String> {
-    Account findByUsername(String username);
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
 }
