@@ -1,6 +1,11 @@
 package com.example.task5.entities;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="accounts")
@@ -8,7 +13,9 @@ public class Account {
 
     @Id
     private String username;
+    @NotBlank
     private String password;
+    @Min(value = 0, message = "Balance should be positive value")
     private int balance;
 
     public Account() {}

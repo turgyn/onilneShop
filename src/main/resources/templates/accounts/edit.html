@@ -13,9 +13,9 @@
         <label for="username">Username: </label>
         <input type="text" th:field="*{username}" id="username" readonly>
         <label for="password">Password: </label>
-        <input type="text" th:field="*{password}" id="password">
+        <input type="password" required th:field="*{password}" id="password">
         <label for="balance">Balance: </label>
-        <input type="number" th:field="*{balance}" id="balance">
+        <input type="number" min="0" th:field="*{balance}" id="balance">
         <input type="submit" value="Update">
     </form>
 </body>

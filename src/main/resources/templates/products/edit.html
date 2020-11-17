@@ -10,11 +10,11 @@
     <header th:insert="fragments :: header"></header>
     <form th:method="PATCH" th:action="@{/products/{id}(id=${product.getId()})}" th:object="${product}">
         <label for="name">Name: </label>
-        <input type="text" th:field="*{name}" id="name">
+        <input type="text" required th:field="*{name}" id="name">
         <label for="price">Price: </label>
-        <input type="number" th:field="*{price}" id="price">
+        <input type="number" min="0" th:field="*{price}" id="price">
         <label for="quantity">Amount: </label>
-        <input type="number" th:field="*{quantity}" id="quantity">
+        <input type="number" min="0" th:field="*{quantity}" id="quantity">
         <input type="submit" value="Update">
     </form>
 </body>

@@ -1,6 +1,9 @@
 package com.example.task5.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "products")
@@ -8,8 +11,11 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank
     private String name;
+    @Min(value = 0, message = "Not negative value")
     private int price;
+    @Min(value = 0, message = "Not negative value")
     private int quantity;
 
     public Product() {}

@@ -18,13 +18,14 @@ public class AccountsController {
 
     @GetMapping
     public String getAccounts(Model model) {
+        System.err.println("GET /accounts");
         model.addAttribute("accounts", accountService.findAll());
         return "accounts/all";
     }
 
     @GetMapping("/{username}")
     public String detailAccount(@PathVariable String username, Model model) {
-        model.addAttribute("account", accountService.getOne(username));
+        model.addAttribute("account", accountService.findByUsername(username));
         return "accounts/detail";
     }
 
@@ -41,7 +42,7 @@ public class AccountsController {
 
     @GetMapping("{username}/edit")
     public String getEditForm(@PathVariable String username, Model model) {
-        model.addAttribute("account", accountService.getOne(username));
+        model.addAttribute("account", accountService.findByUsername(username));
         return "accounts/edit";
     }
 
