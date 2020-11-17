@@ -4,7 +4,10 @@ import com.example.task5.entities.Product;
 import com.example.task5.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/products")
@@ -46,7 +49,10 @@ public class ProductsController {
     }
 
     @PatchMapping("/{id}")
-    public String updateProduct(@ModelAttribute Product product) {
+    public String updateProduct(@ModelAttribute @Valid Product product, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "products/edit";
+        }
         productService.save(product);
         return String.format("redirect:/products/%s",product.getId());
     }

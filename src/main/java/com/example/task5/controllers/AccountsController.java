@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -64,7 +63,10 @@ public class AccountsController {
     }
 
     @PatchMapping("/{username}")
-    public String updateAccount(@ModelAttribute("account") Account account) {
+    public String updateAccount(@ModelAttribute("account") @Valid Account account, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "accounts/edit";
+        }
         accountService.save(account);
         return String.format("redirect:/accounts/%s", account.getUsername());
     }

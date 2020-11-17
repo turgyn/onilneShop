@@ -10,13 +10,24 @@
     <header th:insert="fragments :: header"></header>
     <form th:method="PATCH" th:action="@{/accounts/{username}(username=${account.getUsername()})}" th:object="${account}">
 
-        <label for="username">Username: </label>
-        <input type="text" th:field="*{username}" id="username" readonly>
-        <label for="password">Password: </label>
-        <input type="password" required th:field="*{password}" id="password">
-        <label for="balance">Balance: </label>
-        <input type="number" min="0" th:field="*{balance}" id="balance">
-        <input type="submit" value="Update">
+        <div class="row">
+            <label class="col-2" for="username">Username: </label>
+            <input class="col-2" type="text" th:field="*{username}" id="username" readonly>
+            <p class="col-2" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+        </div>
+        <div class="row">
+            <label class="col-2" for="password">Password: </label>
+            <input class="col-2" type="password" required th:field="*{password}" id="password">
+            <p class="col-2" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <div class="row">
+            <label class="col-2" for="balance">Balance: </label>
+            <input class="col-2" min="0" type="number" th:field="*{balance}" id="balance">
+            <p class="col-2" th:if="${#fields.hasErrors('balance')}" th:errors="*{'balance'}"></p>
+        </div>
+        <div class="row">
+            <input class="col-2" type="submit" value="Update">
+        </div>
     </form>
 </body>
 </html>

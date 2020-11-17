@@ -12,14 +12,17 @@
         <div class="row">
             <label for="name" class="col-2">Name: </label>
             <input class="col-2" type="text" required th:field="*{name}" id="name">
+            <p class="col-2" th:if="${#fields.hasErrors('name')}" th:errors="*{'name'}"></p>
         </div>
         <div class="row">
             <label for="price" class="col-2">Price: </label>
             <input type="number" class="col-2" min="0" th:field="*{price}" id="price">
+            <p class="col-2" th:if="${#fields.hasErrors('price')}" th:errors="*{'price'}"></p>
         </div>
         <div class="row">
             <label for="quantity" class="col-2">Amount: </label>
             <input type="number" class="col-2" min="0" th:field="*{quantity}" id="quantity">
+            <p class="col-2" th:if="${#fields.hasErrors('quantity')}" th:errors="*{'quantity'}"></p>
         </div>
         <div class="row">
             <input type="submit" class="col-2" value="Update">
