@@ -31,6 +31,15 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
+    public boolean create(Account account) {
+        Account check = findByUsername(account.getUsername());
+        if (check.getUsername().equals(account.getUsername())) {
+            return false;
+        }
+        save(account);
+        return true;
+    }
+
     public void save(Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         accountRepository.save(account);

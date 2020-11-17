@@ -1,11 +1,8 @@
 package com.example.task5.entities;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="accounts")

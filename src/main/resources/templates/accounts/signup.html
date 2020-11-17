@@ -15,8 +15,10 @@
 
             <form th:method="POST" th:action="@{/accounts}" th:object="${account}">
                 <input type="text" th:field="*{username}" class="form-control" placeholder="Username" required>
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name error</p>
                 <input type="password" th:field="*{password}" class="form-control" placeholder="Password" required>
-                <input type="password" class="form-control" placeholder="Confirm password" required>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                <input type="password" name="password-confirm" class="form-control" placeholder="Confirm password" required>
                 <input type="submit" class="btn btn-primary btn-lg btn-block mt-3" value="Create">
             </form>
 
