@@ -18,7 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(Account account) {
         username = account.getUsername();
         password = account.getPassword();
-        authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities = Arrays.asList(new SimpleGrantedAuthority(account.getRole()));
         isActive = true;
     }
 

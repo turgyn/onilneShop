@@ -56,4 +56,27 @@ public class AccountService {
         accountRepository.deleteById(username);
     }
 
+    public boolean topUpBalance(Account account) {
+        Account targetAccount = findByUsername(account.getUsername());
+        if (targetAccount.getUsername() == null) {
+            logger.debug("user doesn't exists: " + account.getUsername());
+            return false;
+        }
+        targetAccount.setBalance(targetAccount.getBalance() + account.getBalance());
+        accountRepository.save(targetAccount);
+        return true;
+    }
+
+    public boolean updatePassword(String username, String curPass, String newPass) {
+        curPass = passwordEncoder.encode(curPass);
+        newPass = passwordEncoder.encode(newPass);
+        Account account = findByUsername(username);
+        if (account.getPassword().equals(curPass)) {
+            return false;
+        }
+        account.setPassword(newPass);
+        accountRepository.save(account);
+        return true;
+    }
+
 }

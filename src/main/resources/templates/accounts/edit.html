@@ -17,13 +17,18 @@
         </div>
         <div class="row">
             <label class="col-2" for="password">Password: </label>
-            <input class="col-2" type="password" required th:field="*{password}" id="password">
+            <input class="col-2" type="text" required th:field="*{password}" id="password">
             <p class="col-2" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
         </div>
         <div class="row">
             <label class="col-2" for="balance">Balance: </label>
             <input class="col-2" min="0" type="number" th:field="*{balance}" id="balance">
             <p class="col-2" th:if="${#fields.hasErrors('balance')}" th:errors="*{'balance'}"></p>
+        </div>
+        <div class="row">
+            <label class="col-2" for="role">Role: </label>
+            <input class="col-2" type="text" th:field="*{role}" id="role">
+            <p class="col-2" th:if="${#fields.hasErrors('role')}" th:errors="*{'role'}"></p>
         </div>
         <div class="row">
             <input class="col-2" type="submit" value="Update">
