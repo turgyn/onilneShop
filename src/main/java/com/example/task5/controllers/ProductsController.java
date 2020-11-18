@@ -2,6 +2,8 @@ package com.example.task5.controllers;
 
 import com.example.task5.entities.Product;
 import com.example.task5.services.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,8 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
+
+    private final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 
     private final ProductService productService;
 
@@ -51,6 +55,7 @@ public class ProductsController {
     @PatchMapping("/{id}")
     public String updateProduct(@ModelAttribute @Valid Product product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            logger.error("VALIDATION ERROR: " + bindingResult.getFieldErrors().toString());
             return "products/edit";
         }
         productService.save(product);

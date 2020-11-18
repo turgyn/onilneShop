@@ -1,7 +1,6 @@
 package com.example.task5.configs;
 
 import com.example.task5.security.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,7 +31,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                      .antMatchers("/products/*/edit").hasRole("ADMIN")
                      .antMatchers("/accounts").hasAnyRole("ADMIN", "USER")
                     .antMatchers("/").permitAll()
-                //    .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .permitAll()

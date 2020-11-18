@@ -2,6 +2,8 @@ package com.example.task5.controllers;
 
 import com.example.task5.entities.Account;
 import com.example.task5.services.AccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,8 @@ import javax.validation.Valid;
 @RequestMapping("/accounts")
 public class AccountsController {
 
+    private final Logger logger = LoggerFactory.getLogger(AccountsController.class);
+
     private final AccountService accountService;
 
     public AccountsController(AccountService accountService) {
@@ -22,7 +26,6 @@ public class AccountsController {
 
     @GetMapping
     public String getAccounts(Model model) {
-        System.err.println("GET /accounts");
         model.addAttribute("accounts", accountService.findAll());
         return "accounts/all";
     }
@@ -43,14 +46,17 @@ public class AccountsController {
                              @RequestParam("password-confirm") String passConfirm,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            logger.error("VALIDATION ERROR: " +bindingResult.getFieldErrors().toString());
             return "accounts/signup";
         }
         if (!account.getPassword().equals(passConfirm)) {
             bindingResult.addError(new FieldError("password", "password", "Password confirmation failed"));
+            logger.error("PASS CONFIRM ERROR for user: " + account.getUsername());
             return "accounts/signup";
         }
         if (!accountService.create(account)) {
             bindingResult.addError(new FieldError("username", "username", "username already exists"));
+            logger.error("username exists: " + account.getUsername());
             return "accounts/signup";
         }
         return "redirect:/accounts";
@@ -65,6 +71,7 @@ public class AccountsController {
     @PatchMapping("/{username}")
     public String updateAccount(@ModelAttribute("account") @Valid Account account, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            logger.error("VALIDATION ERROR: " + bindingResult.getFieldErrors().toString());
             return "accounts/edit";
         }
         accountService.save(account);

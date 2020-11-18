@@ -23,13 +23,12 @@ public class LoggingAspect {
 
     @Around("myPointcut()")
     public Object applicationLogger(ProceedingJoinPoint pjp) throws Throwable {
-        System.err.println("log");
         String className = pjp.getTarget().getClass().toString();
         String methodName = pjp.getSignature().getName();
         Object[] args = pjp.getArgs();
-        logger.info("method invoked: " + className + "." + methodName + "() arguments: " + Arrays.toString(args));
+        logger.trace("method invoked: " + className + "." + methodName + "() arguments: " + Arrays.toString(args));
         Object object = pjp.proceed();
-        logger.info(className + "." + methodName + "() response: " + object);
+        logger.trace(className + "." + methodName + "() response: " + object);
         return object;
     }
 }
