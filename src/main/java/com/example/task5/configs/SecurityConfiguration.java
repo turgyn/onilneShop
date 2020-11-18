@@ -3,6 +3,7 @@ package com.example.task5.configs;
 import com.example.task5.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .disable()
                 .authorizeRequests()
                      .antMatchers("/products/*/edit").hasRole("ADMIN")
-                     .antMatchers("/accounts").hasAnyRole("ADMIN", "USER")
+                     .antMatchers(HttpMethod.GET, "/accounts").hasAnyRole("ADMIN", "USER")
                     .antMatchers("/").permitAll()
                 .and()
                     .formLogin()

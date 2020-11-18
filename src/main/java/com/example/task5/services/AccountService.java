@@ -2,6 +2,8 @@ package com.example.task5.services;
 
 import com.example.task5.entities.Account;
 import com.example.task5.repositories.AccountRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class AccountService {
+
+    private final Logger logger = LoggerFactory.getLogger(AccountService.class);
 
     private PasswordEncoder passwordEncoder;
 
@@ -31,11 +35,15 @@ public class AccountService {
     }
 
     public boolean create(Account account) {
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
         Account check = findByUsername(account.getUsername());
-        if (check.getUsername().equals(account.getUsername())) {
+        logger.debug("checking for unique username: " + check);
+        if (check.getUsername() != null && check.getUsername().equals(account.getUsername())) {
+            logger.debug("user already exists");
             return false;
         }
-        save(account);
+        logger.debug("creating new user");
+        accountRepository.save(account);
         return true;
     }
 
