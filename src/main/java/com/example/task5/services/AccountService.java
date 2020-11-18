@@ -38,7 +38,7 @@ public class AccountService {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         Account check = findByUsername(account.getUsername());
         logger.debug("checking for unique username: " + check);
-        if (check.getUsername() != null && check.getUsername().equals(account.getUsername())) {
+        if (check.getUsername() != null) {
             logger.debug("user already exists");
             return false;
         }
