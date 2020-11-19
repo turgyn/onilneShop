@@ -9,9 +9,18 @@
 <body>
     <header th:insert="fragments :: header"></header>
     <form th:method="POST" th:action="@{/products}" th:object="${product}">
-        <input type="text" required th:field="*{name}" placeholder="name">
-        <input type="number" min="0" th:field="*{price}" placeholder="price">
-        <input type="number" min="0" th:field="*{quantity}" placeholder="quantity">
+        <div class="row">
+            <label class="col-2" for="name">Name: </label>
+            <input class="col-2" type="text" required th:field="*{name}" placeholder="name" id="name">
+        </div>
+        <div class="row">
+            <label class="col-2" for="price">Price: </label>
+            <input class="col-2" type="number" min="0" th:field="*{price}" placeholder="price" id="price">
+        </div>
+        <div class="row">
+            <label class="col-2" for="quantity">Amount: </label>
+            <input class="col-2" type="number" min="0" th:field="*{quantity}" placeholder="quantity" id="quantity">
+        </div>
         <input type="submit" value="Create">
     </form>
 </body>

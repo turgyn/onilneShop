@@ -8,6 +8,7 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
+    <div th:insert="fragments :: menu"></div>
     <form th:method="PATCH" th:action="@{/accounts/{username}(username=${account.getUsername()})}" th:object="${account}">
 
         <div class="row">

@@ -8,6 +8,7 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
+    <div th:insert="fragments :: menu"></div>
     <h1>Product List</h1>
     <ul>
         <li th:each="product : ${products}">

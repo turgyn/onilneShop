@@ -8,6 +8,7 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
+    <div th:insert="fragments :: menu"></div>
     <h1>Accounts List</h1>
     <ul>
         <li th:each="account : ${accounts}">

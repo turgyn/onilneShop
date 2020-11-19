@@ -8,6 +8,7 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
+    <div th:insert="fragments :: menu"></div>
     <form th:method="PATCH" th:action="@{/products/{id}(id=${product.getId()})}" th:object="${product}">
         <div class="row">
             <label for="name" class="col-2">Name: </label>

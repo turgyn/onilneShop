@@ -16,7 +16,7 @@
             </div>
             <div class="col-3 myb">TODO:0.00$</div>
             <div class="col-2 myb">
-                <a href="/accounts/new">
+                <a th:href="@{/accounts/{username}(username=${#httpServletRequest.remoteUser})}">
                     <button class="btn btn-primary btn-sm">Profile</button>
                 </a>
             </div>
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div th:fragment="menu" class="row">
+    <div th:fragment="menu" class="row header-menu">
         <div class="col-2">
             <a href="/accounts">Accounts</a>
         </div>

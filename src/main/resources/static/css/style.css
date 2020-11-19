@@ -8,6 +8,11 @@ header {
     padding: 10px 50px;
 }
 
+.header-menu {
+    background-color: antiquewhite;
+    widows: inherit;
+}
+
 .me-form {
     margin: 200px auto auto;
     width: 300px;

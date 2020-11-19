@@ -8,6 +8,8 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
+    <div th:insert="fragments :: menu"></div>
+
     <h1>Detail</h1>
     <p th:text="'ID: ' + ${product.getId()}"></p>
     <p th:text="'name: ' + ${product.getName()}"></p>
@@ -17,6 +19,5 @@
     <form th:method="delete" th:action="@{/products/{id}(id=${product.getId()})}">
         <input type="submit" value="Delete">
     </form>
-    <a th:href="@{/products/}">products List</a>
 </body>
 </html>

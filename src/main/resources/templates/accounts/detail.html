@@ -8,13 +8,16 @@
 </head>
 <body>
     <header th:insert="fragments :: header"></header>
+    <div th:insert="fragments :: menu"></div>
     <h1>Detail</h1>
     <p th:text="${account.getUsername()}"></p>
     <p th:text="${account.getPassword()}"></p>
     <p th:text="${account.getBalance()}"></p>
     <p th:text="${account.getRole()}"></p>
     <a th:href="@{/accounts/{username}/edit(username=${account.getUsername()})}">Edit TODO:[for admins]</a>
+    <br>
     <a th:href="@{/accounts/{username}/topup(username=${account.getUsername()})}">Top-up balance</a>
+    <br>
     <a th:href="@{/accounts/{username}/update-password(username=${account.getUsername()})}">Update password</a>
     <form th:method="delete" th:action="@{/accounts/{username}(username=${account.getUsername()})}">
         <input type="submit" value="Delete">
